@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   AppBar,
   Toolbar,
@@ -16,11 +16,14 @@ import {
   TableRow,
   Paper,
   Box,
+  Accordion,
+  AccordionSummary,
+  AccordionDetails,
+  Button,
 } from "@mui/material";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import SettingsIcon from "@mui/icons-material/Settings";
-
-const drawerWidth = 80; // Adjusted for small sidebar
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore"; // Icon for accordion
 
 const data = [
   { id: 1, name: "John Doe", age: 30 },
@@ -29,25 +32,28 @@ const data = [
 ];
 
 export default function Layout() {
+  const [secondNav, setSecondNav] = useState(false);
+
   return (
     <Box sx={{ display: "flex", height: "100vh", backgroundColor: "#f2f6fa" }}>
       <CssBaseline />
-      {/* Sidebar (Always First) */}
+
+      {/* Left Sidebar */}
       <Drawer
         variant="permanent"
         sx={{
-          width: drawerWidth,
+          width: 80,
           flexShrink: 0,
           [`& .MuiDrawer-paper`]: {
-            width: drawerWidth,
+            width: 80,
             boxSizing: "border-box",
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
             justifyContent: "space-between",
             padding: "16px 0",
-            backgroundColor: "#002874", // Set background color
-            color: "#ffffff", // Optional: Set text/icons to white for better contrast
+            backgroundColor: "#002874",
+            color: "#ffffff",
           },
         }}
       >
@@ -62,8 +68,6 @@ export default function Layout() {
         >
           <ListItem disablePadding>
             <IconButton color="inherit">
-              {" "}
-              {/* Set to inherit so it takes white color */}
               <DashboardIcon fontSize="large" />
             </IconButton>
           </ListItem>
@@ -103,20 +107,174 @@ export default function Layout() {
           />
         </Box>
       </Drawer>
+
+      {/* Right Sidebar (Nested to the right of the left drawer) */}
+      {secondNav && (
+        <Box
+          sx={{
+            width: 200,
+            flexShrink: 0,
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "space-between",
+            padding: "16px 0",
+            backgroundColor: "#FFFFFF",
+            color: "#000000", // Changed to black for better contrast
+          }}
+        >
+          {/* Add content for the right sidebar */}
+          <List
+            sx={{
+              flexGrow: 1,
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              width: "100%", // Ensure the list takes full width
+            }}
+          >
+            {/* Accordion Section */}
+            <Accordion sx={{ width: "100%", boxShadow: "none" }}>
+              <AccordionSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel1-content"
+                id="panel1-header"
+              >
+                <Typography>Settings</Typography>
+              </AccordionSummary>
+              <AccordionDetails>
+                <List>
+                  <ListItem disablePadding>
+                    <IconButton color="inherit">
+                      <SettingsIcon fontSize="small" />
+                    </IconButton>
+                    <Typography variant="body2">Profile</Typography>
+                  </ListItem>
+                  <ListItem disablePadding>
+                    <IconButton color="inherit">
+                      <SettingsIcon fontSize="small" />
+                    </IconButton>
+                    <Typography variant="body2">Security</Typography>
+                  </ListItem>
+                  <ListItem disablePadding>
+                    <IconButton color="inherit">
+                      <SettingsIcon fontSize="small" />
+                    </IconButton>
+                    <Typography variant="body2">Notifications</Typography>
+                  </ListItem>
+                </List>
+              </AccordionDetails>
+            </Accordion>
+
+            {/* Another Accordion Section */}
+            <Accordion sx={{ width: "100%", boxShadow: "none" }}>
+              <AccordionSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel2-content"
+                id="panel2-header"
+              >
+                <Typography>Tools</Typography>
+              </AccordionSummary>
+              <AccordionDetails>
+                <List>
+                  <ListItem disablePadding>
+                    <IconButton color="inherit">
+                      <SettingsIcon fontSize="small" />
+                    </IconButton>
+                    <Typography variant="body2">Analytics</Typography>
+                  </ListItem>
+                  <ListItem disablePadding>
+                    <IconButton color="inherit">
+                      <SettingsIcon fontSize="small" />
+                    </IconButton>
+                    <Typography variant="body2">Reports</Typography>
+                  </ListItem>
+                </List>
+              </AccordionDetails>
+            </Accordion>
+            {/* Accordion Section */}
+            <Accordion sx={{ width: "100%", boxShadow: "none" }}>
+              <AccordionSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel1-content"
+                id="panel1-header"
+              >
+                <Typography>Settings</Typography>
+              </AccordionSummary>
+              <AccordionDetails>
+                <List>
+                  <ListItem disablePadding>
+                    <IconButton color="inherit">
+                      <SettingsIcon fontSize="small" />
+                    </IconButton>
+                    <Typography variant="body2">Profile</Typography>
+                  </ListItem>
+                  <ListItem disablePadding>
+                    <IconButton color="inherit">
+                      <SettingsIcon fontSize="small" />
+                    </IconButton>
+                    <Typography variant="body2">Security</Typography>
+                  </ListItem>
+                  <ListItem disablePadding>
+                    <IconButton color="inherit">
+                      <SettingsIcon fontSize="small" />
+                    </IconButton>
+                    <Typography variant="body2">Notifications</Typography>
+                  </ListItem>
+                </List>
+              </AccordionDetails>
+            </Accordion>
+
+            {/* Another Accordion Section */}
+            <Accordion sx={{ width: "100%", boxShadow: "none" }}>
+              <AccordionSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel2-content"
+                id="panel2-header"
+              >
+                <Typography>Tools</Typography>
+              </AccordionSummary>
+              <AccordionDetails>
+                <List>
+                  <ListItem disablePadding>
+                    <IconButton color="inherit">
+                      <SettingsIcon fontSize="small" />
+                    </IconButton>
+                    <Typography variant="body2">Analytics</Typography>
+                  </ListItem>
+                  <ListItem disablePadding>
+                    <IconButton color="inherit">
+                      <SettingsIcon fontSize="small" />
+                    </IconButton>
+                    <Typography variant="body2">Reports</Typography>
+                  </ListItem>
+                </List>
+              </AccordionDetails>
+            </Accordion>
+          </List>
+        </Box>
+      )}
+
       {/* Main Content Area */}
       <Box sx={{ flexGrow: 1, display: "flex", flexDirection: "column" }}>
         {/* Header (AppBar) */}
         <AppBar
           position="fixed"
           sx={{
-            width: `calc(99% - ${drawerWidth}px)`, // Adjust width to avoid overlapping
-            marginLeft: `${drawerWidth}px`,
+            width: secondNav ? `calc(100% - 300px)` : `calc(100% - 100px)`, // Adjust width to account for both sidebars
+            marginLeft: 280, // Offset for both sidebars
             zIndex: (theme) => theme.zIndex.drawer + 1,
             backgroundColor: "#ffffff",
             margin: "5px",
           }}
         >
           <Toolbar>
+            <Button
+              onClick={() => setSecondNav(!secondNav)}
+              variant="contained"
+            >
+              Contained
+            </Button>
             <Typography variant="h6" noWrap>
               Material UI Layout
             </Typography>
