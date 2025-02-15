@@ -11,12 +11,6 @@ import {
   Accordion,
   AccordionSummary,
   AccordionDetails,
-  Drawer,
-  rightNav,
-  setRightNav,
-  TextField,
-  Button,
-  Paper,
 } from "@mui/material";
 
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
@@ -27,7 +21,6 @@ import ContentSection from "../Components/ContentSection/ContentSection";
 
 export default function Layout() {
   const [secondNav, setSecondNav] = useState(false);
-  const [rightNav, setRightNav] = useState(true);
 
   return (
     <Box sx={{ display: "flex", height: "100vh", backgroundColor: "#f2f6fa" }}>
@@ -644,26 +637,7 @@ export default function Layout() {
           </Toolbar>
         </AppBar>
         <ContentSection />
-        <Paper
-          sx={{
-            width: 80,
-            height: "80vh",
-            boxSizing: "border-box",
-            position: "fixed",
-            right: 10,
-            top: 80,
-            display: "flex",
-            flexDirection: "column",
-            overflowY: "auto",
-          }}
-        >
-          <List>
-            {" "}
-            {[...Array(6)].map((_, index) => (
-              <ListItem key={index}>Test</ListItem>
-            ))}
-          </List>
-        </Paper>
+     
       </Box>
     </Box>
   );

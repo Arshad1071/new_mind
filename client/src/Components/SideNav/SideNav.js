@@ -8,6 +8,7 @@ import {
   Box,
   Stack,
 } from "@mui/material";
+import RightSideBar from "../RightSideBar/RightSideBar";
 
 const index = () => {
   return (
@@ -59,7 +60,7 @@ const index = () => {
                     alt="icon"
                     width={item.size || 18}
                     height={item.size || 18}
-                    className={index == 0 ? "" : "white-icon"}
+                    className={index === 0 ? "" : "white-icon"}
                   />
                 </IconButton>
                 <Typography
@@ -72,6 +73,7 @@ const index = () => {
             </ListItem>
           ))}
         </List>
+        <RightSideBar/>
 
         {/* Rounded Image at Bottom */}
         <Box sx={{ mb: 2, display: "flex", justifyContent: "center" }}>
