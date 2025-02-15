@@ -13,6 +13,8 @@ import {
   Button,
 } from "@mui/material";
 import { KeyboardArrowDown, KeyboardArrowUp } from "@mui/icons-material";
+
+// Updated data structure
 const data = [
   {
     id: 1,
@@ -136,12 +138,6 @@ const ContentSection = () => {
     }));
   };
 
-  // Function to handle status button click
-  const handleStatusClick = (id, status) => {
-    console.log(`Status clicked for row ${id}: ${status}`);
-    // You can add logic here to update the status
-  };
-
   return (
     <Box
       component="main"
@@ -191,7 +187,6 @@ const ContentSection = () => {
                     <Button
                       variant="contained"
                       size="small"
-                      onClick={() => handleStatusClick(row.id, row.status)}
                       sx={{
                         backgroundColor:
                           row.status === "Completed"
@@ -214,7 +209,18 @@ const ContentSection = () => {
                     </Button>
                   </TableCell>
                   <TableCell>{row.document}</TableCell>
-                  <TableCell>{row.responsibleParty}</TableCell>
+                  <TableCell>
+                    <Box
+                      sx={{
+                        display: "inline-block",
+                        backgroundColor: "#f5f5f5", // Light gray background
+                        borderRadius: "12px", // Rounded corners
+                        padding: "4px 8px", // Padding around the text
+                      }}
+                    >
+                      {row.responsibleParty}
+                    </Box>
+                  </TableCell>
                   <TableCell>{row.updateDate}</TableCell>
                 </TableRow>
 
