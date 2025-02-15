@@ -4,111 +4,35 @@ import {
   Toolbar,
   Typography,
   CssBaseline,
-  Drawer,
   List,
   ListItem,
   IconButton,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-  Paper,
   Box,
   Accordion,
   AccordionSummary,
   AccordionDetails,
+  Drawer,
+  rightNav,
+  setRightNav,
+  TextField,
   Button,
+  Paper,
 } from "@mui/material";
-import DashboardIcon from "@mui/icons-material/Dashboard";
-import SettingsIcon from "@mui/icons-material/Settings";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore"; // Icon for accordion
 
-const data = [
-  { id: 1, name: "John Doe", age: 30 },
-  { id: 2, name: "Jane Smith", age: 28 },
-  { id: 3, name: "Alice Brown", age: 35 },
-];
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import MenuIcon from "@mui/icons-material/Menu";
+import ArrowDropDown from "@mui/icons-material/ArrowDropDown";
+import SideNav from "../Components/SideNav/SideNav";
+import ContentSection from "../Components/ContentSection/ContentSection";
 
 export default function Layout() {
   const [secondNav, setSecondNav] = useState(false);
+  const [rightNav, setRightNav] = useState(true);
 
   return (
     <Box sx={{ display: "flex", height: "100vh", backgroundColor: "#f2f6fa" }}>
       <CssBaseline />
-
-      {/* Left Sidebar */}
-      <Drawer
-        variant="permanent"
-        sx={{
-          width: 80,
-          flexShrink: 0,
-          [`& .MuiDrawer-paper`]: {
-            width: 80,
-            boxSizing: "border-box",
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            justifyContent: "space-between",
-            padding: "16px 0",
-            backgroundColor: "#002874",
-            color: "#ffffff",
-          },
-        }}
-      >
-        {/* List for Icons */}
-        <List
-          sx={{
-            flexGrow: 1,
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-          }}
-        >
-          <ListItem disablePadding>
-            <IconButton color="inherit">
-              <DashboardIcon fontSize="large" />
-            </IconButton>
-          </ListItem>
-          <ListItem disablePadding>
-            <IconButton color="inherit">
-              <SettingsIcon fontSize="large" />
-            </IconButton>
-          </ListItem>
-          <ListItem disablePadding>
-            <IconButton color="inherit">
-              <SettingsIcon fontSize="large" />
-            </IconButton>
-          </ListItem>
-          <ListItem disablePadding>
-            <IconButton color="inherit">
-              <SettingsIcon fontSize="large" />
-            </IconButton>
-          </ListItem>
-          <ListItem disablePadding>
-            <IconButton color="inherit">
-              <SettingsIcon fontSize="large" />
-            </IconButton>
-          </ListItem>
-        </List>
-
-        {/* Rounded Image at Bottom */}
-        <Box sx={{ mb: 2, display: "flex", justifyContent: "center" }}>
-          <img
-            src="https://media2.dev.to/dynamic/image/width=800%2Cheight=%2Cfit=scale-down%2Cgravity=auto%2Cformat=auto/https%3A%2F%2Fwww.gravatar.com%2Favatar%2F2c7d99fe281ecd3bcd65ab915bac6dd5%3Fs%3D250"
-            alt="Profile"
-            style={{
-              width: 50,
-              height: 50,
-              borderRadius: "50%",
-              objectFit: "cover",
-            }}
-          />
-        </Box>
-      </Drawer>
-
-      {/* Right Sidebar (Nested to the right of the left drawer) */}
+      <SideNav />
       {secondNav && (
         <Box
           sx={{
@@ -118,135 +42,563 @@ export default function Layout() {
             flexDirection: "column",
             alignItems: "center",
             justifyContent: "space-between",
-            padding: "16px 0",
             backgroundColor: "#FFFFFF",
-            color: "#000000", // Changed to black for better contrast
+            color: "#000000",
           }}
         >
-          {/* Add content for the right sidebar */}
           <List
             sx={{
-              flexGrow: 1,
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
-              width: "100%", // Ensure the list takes full width
+              width: "100%",
             }}
           >
-            {/* Accordion Section */}
-            <Accordion sx={{ width: "100%", boxShadow: "none" }}>
+            <Box
+              sx={{
+                padding: "5px",
+                width: "100%",
+                color: "white",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+              }}
+            >
+              {/* Left-aligned Typography with black color */}
+              <Typography sx={{ color: "black" }}>
+                Transaction Content
+              </Typography>
+
+              {/* Right-aligned SVG Icon Button */}
+              <IconButton
+                color="black"
+                onClick={() => setSecondNav(!secondNav)}
+              >
+                <ArrowBackIcon /> {/* Material-UI left arrow icon */}
+              </IconButton>
+            </Box>
+
+            <Box
+              sx={{
+                padding: "1px",
+                width: "100%",
+                color: "white",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+              }}
+            >
+              {/* Sub-section 1 */}
+              <Box
+                sx={{
+                  flex: 1,
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  padding: "1px",
+                  borderRadius: "4px",
+                  margin: "0px",
+                  borderLeft: "1px solid #e0e0e0", // Top border
+                  borderRight: "1px solid #e0e0e0", // Bottom border
+                }}
+              >
+                <Typography variant="caption" sx={{ color: "black" }}>
+                  12 Stages
+                </Typography>
+              </Box>
+
+              {/* Sub-section 2 */}
+              <Box
+                sx={{
+                  flex: 1,
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  padding: "1px",
+                  borderRadius: "4px",
+                  margin: "0 1px",
+
+                  borderRight: "1px solid #e0e0e0", // Bottom border
+                }}
+              >
+                <Typography variant="caption" sx={{ color: "black" }}>
+                  23 Subfolder
+                </Typography>
+              </Box>
+
+              {/* Sub-section 3 */}
+              <Box
+                sx={{
+                  flex: 1,
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  padding: "1px",
+                  borderRadius: "4px",
+                  margin: "0 1px",
+
+                  borderRight: "1px solid #e0e0e0", // Bottom border
+                }}
+              >
+                <Typography variant="caption" sx={{ color: "black" }}>
+                  1235 Document
+                </Typography>
+              </Box>
+
+              {/* Sub-section 4 */}
+              <Box
+                sx={{
+                  flex: 1,
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  padding: "1px",
+                  borderRadius: "4px",
+                  margin: "0 1px",
+                }}
+              >
+                <MenuIcon sx={{ color: "black" }} />
+              </Box>
+            </Box>
+
+            <Box
+              sx={{
+                marginTop: "5px",
+                padding: "5px",
+                width: "100%",
+                color: "white",
+                backgroundColor: "white",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+                borderTop: "1px solid #e0e0e0", // Top border
+                borderBottom: "1px solid #e0e0e0", // Bottom border
+              }}
+            >
+              <Typography variant="caption" sx={{ color: "black" }}>
+                Filter by Client/Matter name
+              </Typography>
+            </Box>
+            <Accordion disableGutters>
               <AccordionSummary
-                expandIcon={<ExpandMoreIcon />}
+                expandIcon={<ArrowDropDown />}
                 aria-controls="panel1-content"
                 id="panel1-header"
+                sx={{
+                  flexDirection: "row-reverse",
+                  minHeight: "unset",
+                  padding: "0 45px",
+                }}
               >
-                <Typography>Settings</Typography>
+                <Typography>Stage 1</Typography>
               </AccordionSummary>
-              <AccordionDetails>
+              <AccordionDetails sx={{ padding: "0 45px" }}>
+                {" "}
+                {/* Removes default padding */}
                 <List>
                   <ListItem disablePadding>
                     <IconButton color="inherit">
-                      <SettingsIcon fontSize="small" />
+                      <img
+                        src="/folder.svg"
+                        alt="Settings"
+                        width={16}
+                        height={16}
+                      />
                     </IconButton>
-                    <Typography variant="body2">Profile</Typography>
+                    <Typography variant="caption">Stage 1.1</Typography>
                   </ListItem>
                   <ListItem disablePadding>
-                    <IconButton color="inherit">
-                      <SettingsIcon fontSize="small" />
+                    <IconButton color="caption">
+                      <img
+                        src="/folder.svg"
+                        alt="Settings"
+                        width={16}
+                        height={16}
+                      />
                     </IconButton>
-                    <Typography variant="body2">Security</Typography>
+                    <Typography variant="body2">Stage 1.2</Typography>
                   </ListItem>
                   <ListItem disablePadding>
-                    <IconButton color="inherit">
-                      <SettingsIcon fontSize="small" />
+                    <IconButton color="caption">
+                      <img
+                        src="/folder.svg"
+                        alt="Settings"
+                        width={16}
+                        height={16}
+                      />
                     </IconButton>
-                    <Typography variant="body2">Notifications</Typography>
+                    <Typography variant="body2">Stage 1.3</Typography>
                   </ListItem>
                 </List>
               </AccordionDetails>
             </Accordion>
-
-            {/* Another Accordion Section */}
-            <Accordion sx={{ width: "100%", boxShadow: "none" }}>
+            <Accordion disableGutters>
               <AccordionSummary
-                expandIcon={<ExpandMoreIcon />}
-                aria-controls="panel2-content"
-                id="panel2-header"
-              >
-                <Typography>Tools</Typography>
-              </AccordionSummary>
-              <AccordionDetails>
-                <List>
-                  <ListItem disablePadding>
-                    <IconButton color="inherit">
-                      <SettingsIcon fontSize="small" />
-                    </IconButton>
-                    <Typography variant="body2">Analytics</Typography>
-                  </ListItem>
-                  <ListItem disablePadding>
-                    <IconButton color="inherit">
-                      <SettingsIcon fontSize="small" />
-                    </IconButton>
-                    <Typography variant="body2">Reports</Typography>
-                  </ListItem>
-                </List>
-              </AccordionDetails>
-            </Accordion>
-            {/* Accordion Section */}
-            <Accordion sx={{ width: "100%", boxShadow: "none" }}>
-              <AccordionSummary
-                expandIcon={<ExpandMoreIcon />}
+                expandIcon={<ArrowDropDown />}
                 aria-controls="panel1-content"
                 id="panel1-header"
+                sx={{
+                  flexDirection: "row-reverse",
+                  minHeight: "unset",
+                  padding: "0 45px",
+                }}
               >
-                <Typography>Settings</Typography>
+                <Typography>Stage 2</Typography>
               </AccordionSummary>
-              <AccordionDetails>
+              <AccordionDetails sx={{ padding: "0 45px" }}>
+                {" "}
+                {/* Removes default padding */}
                 <List>
                   <ListItem disablePadding>
                     <IconButton color="inherit">
-                      <SettingsIcon fontSize="small" />
+                      <img
+                        src="/folder.svg"
+                        alt="Settings"
+                        width={16}
+                        height={16}
+                      />
                     </IconButton>
-                    <Typography variant="body2">Profile</Typography>
+                    <Typography variant="caption">Stage 1.1</Typography>
                   </ListItem>
                   <ListItem disablePadding>
-                    <IconButton color="inherit">
-                      <SettingsIcon fontSize="small" />
+                    <IconButton color="caption">
+                      <img
+                        src="/folder.svg"
+                        alt="Settings"
+                        width={16}
+                        height={16}
+                      />
                     </IconButton>
-                    <Typography variant="body2">Security</Typography>
+                    <Typography variant="body2">Stage 1.2</Typography>
                   </ListItem>
                   <ListItem disablePadding>
-                    <IconButton color="inherit">
-                      <SettingsIcon fontSize="small" />
+                    <IconButton color="caption">
+                      <img
+                        src="/folder.svg"
+                        alt="Settings"
+                        width={16}
+                        height={16}
+                      />
                     </IconButton>
-                    <Typography variant="body2">Notifications</Typography>
+                    <Typography variant="body2">Stage 1.3</Typography>
                   </ListItem>
                 </List>
               </AccordionDetails>
             </Accordion>
-
-            {/* Another Accordion Section */}
-            <Accordion sx={{ width: "100%", boxShadow: "none" }}>
+            <Accordion disableGutters>
               <AccordionSummary
-                expandIcon={<ExpandMoreIcon />}
-                aria-controls="panel2-content"
-                id="panel2-header"
+                expandIcon={<ArrowDropDown />}
+                aria-controls="panel1-content"
+                id="panel1-header"
+                sx={{
+                  flexDirection: "row-reverse",
+                  minHeight: "unset",
+                  padding: "0 45px",
+                }}
               >
-                <Typography>Tools</Typography>
+                <Typography>Stage 3</Typography>
               </AccordionSummary>
-              <AccordionDetails>
+              <AccordionDetails sx={{ padding: "0 45px" }}>
+                {" "}
+                {/* Removes default padding */}
                 <List>
                   <ListItem disablePadding>
                     <IconButton color="inherit">
-                      <SettingsIcon fontSize="small" />
+                      <img
+                        src="/folder.svg"
+                        alt="Settings"
+                        width={16}
+                        height={16}
+                      />
                     </IconButton>
-                    <Typography variant="body2">Analytics</Typography>
+                    <Typography variant="caption">Stage 1.1</Typography>
                   </ListItem>
                   <ListItem disablePadding>
-                    <IconButton color="inherit">
-                      <SettingsIcon fontSize="small" />
+                    <IconButton color="caption">
+                      <img
+                        src="/folder.svg"
+                        alt="Settings"
+                        width={16}
+                        height={16}
+                      />
                     </IconButton>
-                    <Typography variant="body2">Reports</Typography>
+                    <Typography variant="body2">Stage 1.2</Typography>
+                  </ListItem>
+                  <ListItem disablePadding>
+                    <IconButton color="caption">
+                      <img
+                        src="/folder.svg"
+                        alt="Settings"
+                        width={16}
+                        height={16}
+                      />
+                    </IconButton>
+                    <Typography variant="body2">Stage 1.3</Typography>
+                  </ListItem>
+                </List>
+              </AccordionDetails>
+            </Accordion>
+            <Accordion disableGutters>
+              <AccordionSummary
+                expandIcon={<ArrowDropDown />}
+                aria-controls="panel1-content"
+                id="panel1-header"
+                sx={{
+                  flexDirection: "row-reverse",
+                  minHeight: "unset",
+                  padding: "0 45px",
+                }}
+              >
+                <Typography>Stage 4</Typography>
+              </AccordionSummary>
+              <AccordionDetails sx={{ padding: "0 45px" }}>
+                {" "}
+                {/* Removes default padding */}
+                <List>
+                  <ListItem disablePadding>
+                    <IconButton color="inherit">
+                      <img
+                        src="/folder.svg"
+                        alt="Settings"
+                        width={16}
+                        height={16}
+                      />
+                    </IconButton>
+                    <Typography variant="caption">Stage 1.1</Typography>
+                  </ListItem>
+                  <ListItem disablePadding>
+                    <IconButton color="caption">
+                      <img
+                        src="/folder.svg"
+                        alt="Settings"
+                        width={16}
+                        height={16}
+                      />
+                    </IconButton>
+                    <Typography variant="body2">Stage 1.2</Typography>
+                  </ListItem>
+                  <ListItem disablePadding>
+                    <IconButton color="caption">
+                      <img
+                        src="/folder.svg"
+                        alt="Settings"
+                        width={16}
+                        height={16}
+                      />
+                    </IconButton>
+                    <Typography variant="body2">Stage 1.3</Typography>
+                  </ListItem>
+                </List>
+              </AccordionDetails>
+            </Accordion>
+            <Accordion disableGutters>
+              <AccordionSummary
+                expandIcon={<ArrowDropDown />}
+                aria-controls="panel1-content"
+                id="panel1-header"
+                sx={{
+                  flexDirection: "row-reverse",
+                  minHeight: "unset",
+                  padding: "0 45px",
+                }}
+              >
+                <Typography>Stage 1</Typography>
+              </AccordionSummary>
+              <AccordionDetails sx={{ padding: "0 45px" }}>
+                {" "}
+                {/* Removes default padding */}
+                <List>
+                  <ListItem disablePadding>
+                    <IconButton color="inherit">
+                      <img
+                        src="/folder.svg"
+                        alt="Settings"
+                        width={16}
+                        height={16}
+                      />
+                    </IconButton>
+                    <Typography variant="caption">Stage 1.1</Typography>
+                  </ListItem>
+                  <ListItem disablePadding>
+                    <IconButton color="caption">
+                      <img
+                        src="/folder.svg"
+                        alt="Settings"
+                        width={16}
+                        height={16}
+                      />
+                    </IconButton>
+                    <Typography variant="body2">Stage 1.2</Typography>
+                  </ListItem>
+                  <ListItem disablePadding>
+                    <IconButton color="caption">
+                      <img
+                        src="/folder.svg"
+                        alt="Settings"
+                        width={16}
+                        height={16}
+                      />
+                    </IconButton>
+                    <Typography variant="body2">Stage 1.3</Typography>
+                  </ListItem>
+                </List>
+              </AccordionDetails>
+            </Accordion>
+            <Accordion disableGutters>
+              <AccordionSummary
+                expandIcon={<ArrowDropDown />}
+                aria-controls="panel1-content"
+                id="panel1-header"
+                sx={{
+                  flexDirection: "row-reverse",
+                  minHeight: "unset",
+                  padding: "0 45px",
+                }}
+              >
+                <Typography>Stage 2</Typography>
+              </AccordionSummary>
+              <AccordionDetails sx={{ padding: "0 45px" }}>
+                {" "}
+                {/* Removes default padding */}
+                <List>
+                  <ListItem disablePadding>
+                    <IconButton color="inherit">
+                      <img
+                        src="/folder.svg"
+                        alt="Settings"
+                        width={16}
+                        height={16}
+                      />
+                    </IconButton>
+                    <Typography variant="caption">Stage 1.1</Typography>
+                  </ListItem>
+                  <ListItem disablePadding>
+                    <IconButton color="caption">
+                      <img
+                        src="/folder.svg"
+                        alt="Settings"
+                        width={16}
+                        height={16}
+                      />
+                    </IconButton>
+                    <Typography variant="body2">Stage 1.2</Typography>
+                  </ListItem>
+                  <ListItem disablePadding>
+                    <IconButton color="caption">
+                      <img
+                        src="/folder.svg"
+                        alt="Settings"
+                        width={16}
+                        height={16}
+                      />
+                    </IconButton>
+                    <Typography variant="body2">Stage 1.3</Typography>
+                  </ListItem>
+                </List>
+              </AccordionDetails>
+            </Accordion>
+            <Accordion disableGutters>
+              <AccordionSummary
+                expandIcon={<ArrowDropDown />}
+                aria-controls="panel1-content"
+                id="panel1-header"
+                sx={{
+                  flexDirection: "row-reverse",
+                  minHeight: "unset",
+                  padding: "0 45px",
+                }}
+              >
+                <Typography>Stage 3</Typography>
+              </AccordionSummary>
+              <AccordionDetails sx={{ padding: "0 45px" }}>
+                {" "}
+                {/* Removes default padding */}
+                <List>
+                  <ListItem disablePadding>
+                    <IconButton color="inherit">
+                      <img
+                        src="/folder.svg"
+                        alt="Settings"
+                        width={16}
+                        height={16}
+                      />
+                    </IconButton>
+                    <Typography variant="caption">Stage 1.1</Typography>
+                  </ListItem>
+                  <ListItem disablePadding>
+                    <IconButton color="caption">
+                      <img
+                        src="/folder.svg"
+                        alt="Settings"
+                        width={16}
+                        height={16}
+                      />
+                    </IconButton>
+                    <Typography variant="body2">Stage 1.2</Typography>
+                  </ListItem>
+                  <ListItem disablePadding>
+                    <IconButton color="caption">
+                      <img
+                        src="/folder.svg"
+                        alt="Settings"
+                        width={16}
+                        height={16}
+                      />
+                    </IconButton>
+                    <Typography variant="body2">Stage 1.3</Typography>
+                  </ListItem>
+                </List>
+              </AccordionDetails>
+            </Accordion>
+            <Accordion disableGutters>
+              <AccordionSummary
+                expandIcon={<ArrowDropDown />}
+                aria-controls="panel1-content"
+                id="panel1-header"
+                sx={{
+                  flexDirection: "row-reverse",
+                  minHeight: "unset",
+                  padding: "0 45px",
+                }}
+              >
+                <Typography>Stage 4</Typography>
+              </AccordionSummary>
+              <AccordionDetails sx={{ padding: "0 45px" }}>
+                {" "}
+                {/* Removes default padding */}
+                <List>
+                  <ListItem disablePadding>
+                    <IconButton color="inherit">
+                      <img
+                        src="/folder.svg"
+                        alt="Settings"
+                        width={16}
+                        height={16}
+                      />
+                    </IconButton>
+                    <Typography variant="caption">Stage 1.1</Typography>
+                  </ListItem>
+                  <ListItem disablePadding>
+                    <IconButton color="caption">
+                      <img
+                        src="/folder.svg"
+                        alt="Settings"
+                        width={16}
+                        height={16}
+                      />
+                    </IconButton>
+                    <Typography variant="body2">Stage 1.2</Typography>
+                  </ListItem>
+                  <ListItem disablePadding>
+                    <IconButton color="caption">
+                      <img
+                        src="/folder.svg"
+                        alt="Settings"
+                        width={16}
+                        height={16}
+                      />
+                    </IconButton>
+                    <Typography variant="body2">Stage 1.3</Typography>
                   </ListItem>
                 </List>
               </AccordionDetails>
@@ -268,55 +620,50 @@ export default function Layout() {
             margin: "5px",
           }}
         >
-          <Toolbar>
-            <Button
+          <Toolbar
+            sx={{ display: "flex", justifyContent: "flex-start", gap: 1 }}
+          >
+            <IconButton
+              color="inherit"
               onClick={() => setSecondNav(!secondNav)}
-              variant="contained"
             >
-              Contained
-            </Button>
-            <Typography variant="h6" noWrap>
-              Material UI Layout
+              <img
+                src="/house-solid.svg"
+                alt="Settings"
+                width={16}
+                height={16}
+              />
+            </IconButton>
+            <Typography
+              variant="caption"
+              sx={{ color: "black", display: "block", whiteSpace: "nowrap" }}
+            >
+              CLIENT &gt; MATTER &gt; TRANSACTION DETAIL PAGE &gt; TRANSACTION
+              CONTENTS
             </Typography>
           </Toolbar>
         </AppBar>
-
-        {/* Content Section */}
-        <Box
-          component="main"
+        <ContentSection />
+        <Paper
           sx={{
-            flexGrow: 1,
-            overflow: "auto",
-            p: 3,
-            marginTop: "64px", // Offset for the AppBar height
+            width: 80,
+            height: "80vh",
+            boxSizing: "border-box",
+            position: "fixed",
+            right: 10,
+            top: 80,
+            display: "flex",
+            flexDirection: "column",
+            overflowY: "auto",
           }}
         >
-          <Typography variant="h6" gutterBottom>
-            User Data Table
-          </Typography>
-
-          {/* Table Container */}
-          <TableContainer component={Paper}>
-            <Table size="small">
-              <TableHead>
-                <TableRow>
-                  <TableCell>ID</TableCell>
-                  <TableCell>Name</TableCell>
-                  <TableCell>Age</TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {data.map((row) => (
-                  <TableRow key={row.id}>
-                    <TableCell>{row.id}</TableCell>
-                    <TableCell>{row.name}</TableCell>
-                    <TableCell>{row.age}</TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </TableContainer>
-        </Box>
+          <List>
+            {" "}
+            {[...Array(6)].map((_, index) => (
+              <ListItem key={index}>Test</ListItem>
+            ))}
+          </List>
+        </Paper>
       </Box>
     </Box>
   );
