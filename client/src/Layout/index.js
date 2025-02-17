@@ -11,6 +11,7 @@ import {
   Accordion,
   AccordionSummary,
   AccordionDetails,
+  Breadcrumbs,
 } from "@mui/material";
 
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
@@ -627,17 +628,26 @@ export default function Layout() {
                 height={16}
               />
             </IconButton>
-            <Typography
-              variant="caption"
-              sx={{ color: "black", display: "block", whiteSpace: "nowrap" }}
+
+            <Breadcrumbs
+              separator="›"
+              aria-label="breadcrumb"
+              sx={{
+                fontSize: "12px", 
+                "& .MuiBreadcrumbs-separator": { color: "gray" },
+                "& a": { color: "black" },
+              }}
             >
-              CLIENT &gt; MATTER &gt; TRANSACTION DETAIL PAGE &gt; TRANSACTION
-              CONTENTS
-            </Typography>
+              <span>CLIENT</span>
+              <span> MATTER</span>
+              <span> TRANSACTION DETAIL PAGE</span>
+              <a href="/#" style={{ textDecoration: "none" }}>
+                TRANSACTION CONTENTS
+              </a>
+            </Breadcrumbs>
           </Toolbar>
         </AppBar>
         <ContentSection />
-     
       </Box>
     </Box>
   );

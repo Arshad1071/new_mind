@@ -11,6 +11,11 @@ import {
   IconButton,
   Collapse,
   Button,
+  TextField,
+  FormControl,
+  Select,
+  InputLabel,
+  MenuItem,
 } from "@mui/material";
 import { KeyboardArrowDown, KeyboardArrowUp } from "@mui/icons-material";
 
@@ -93,39 +98,6 @@ const data = [
     updateDate: "2023-10-30",
     details: "Some details about Frank White",
   },
-  {
-    id: 8,
-    name: "Grace Lee",
-    age: 29,
-    phase: "Phase 2",
-    status: "Completed",
-    document: "Document H",
-    responsibleParty: "Team H",
-    updateDate: "2023-11-01",
-    details: "Some details about Grace Lee",
-  },
-  {
-    id: 9,
-    name: "Henry Carter",
-    age: 38,
-    phase: "Phase 3",
-    status: "Pending",
-    document: "Document I",
-    responsibleParty: "Team I",
-    updateDate: "2023-11-05",
-    details: "Some details about Henry Carter",
-  },
-  {
-    id: 10,
-    name: "Ivy Parker",
-    age: 27,
-    phase: "Phase 1",
-    status: "In Progress",
-    document: "Document J",
-    responsibleParty: "Team J",
-    updateDate: "2023-11-10",
-    details: "Some details about Ivy Parker",
-  },
 ];
 
 const ContentSection = () => {
@@ -149,6 +121,58 @@ const ContentSection = () => {
         marginRight: "84px",
       }}
     >
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          backgroundColor: "#ffffff", // Light gray background
+          padding: 1,
+          borderRadius: "65px",
+          marginBottom: 2,
+        }}
+      >
+        <Box>
+          <FormControl size="small" sx={{ minWidth: 220 }}>
+            <InputLabel>All Selcted folder</InputLabel>
+            <Select
+              size="small"
+              name="phase"
+              //value={filters.phase}
+              //onChange={handleFilterChange}
+            >
+              <MenuItem value="">All</MenuItem>
+              <MenuItem value="Phase 1">Phase 1</MenuItem>
+              <MenuItem value="Phase 2">Phase 2</MenuItem>
+              <MenuItem value="Phase 3">Phase 3</MenuItem>
+            </Select>
+          </FormControl>
+          <TextField label="Search Name" size="small" name="name" />
+        </Box>
+
+        <Box>
+          <TextField label="Search Age" size="small" name="age" type="number" />
+          <FormControl size="small" sx={{ minWidth: 120 }}>
+            <InputLabel>Phase</InputLabel>
+            <Select name="phase">
+              <MenuItem value="">All</MenuItem>
+              <MenuItem value="Phase 1">Phase 1</MenuItem>
+              <MenuItem value="Phase 2">Phase 2</MenuItem>
+              <MenuItem value="Phase 3">Phase 3</MenuItem>
+            </Select>
+          </FormControl>
+          <FormControl size="small" sx={{ minWidth: 120 }}>
+            <InputLabel>Status</InputLabel>
+            <Select name="status">
+              <MenuItem value="">All</MenuItem>
+              <MenuItem value="Completed">Completed</MenuItem>
+              <MenuItem value="In Progress">In Progress</MenuItem>
+              <MenuItem value="Pending">Pending</MenuItem>
+            </Select>
+          </FormControl>
+        </Box>
+      </Box>
+
       {/* Table Container */}
       <TableContainer component={Paper}>
         <Table size="small">
@@ -176,7 +200,11 @@ const ContentSection = () => {
                       size="small"
                       onClick={() => handleToggleRow(row.id)}
                     >
-                      {openRows[row.id] ? <KeyboardArrowUp /> : <KeyboardArrowDown />}
+                      {openRows[row.id] ? (
+                        <KeyboardArrowUp />
+                      ) : (
+                        <KeyboardArrowDown />
+                      )}
                     </IconButton>
                   </TableCell>
                   <TableCell>{row.id}</TableCell>
@@ -226,8 +254,15 @@ const ContentSection = () => {
 
                 {/* Collapsible Row */}
                 <TableRow>
-                  <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={9}>
-                    <Collapse in={openRows[row.id]} timeout="auto" unmountOnExit>
+                  <TableCell
+                    style={{ paddingBottom: 0, paddingTop: 0 }}
+                    colSpan={9}
+                  >
+                    <Collapse
+                      in={openRows[row.id]}
+                      timeout="auto"
+                      unmountOnExit
+                    >
                       <Box margin={1}>
                         <div>
                           <strong>Details:</strong> {row.details}
@@ -242,7 +277,8 @@ const ContentSection = () => {
                           <strong>Document:</strong> {row.document}
                         </div>
                         <div>
-                          <strong>Responsible Party:</strong> {row.responsibleParty}
+                          <strong>Responsible Party:</strong>{" "}
+                          {row.responsibleParty}
                         </div>
                         <div>
                           <strong>Update Date:</strong> {row.updateDate}
